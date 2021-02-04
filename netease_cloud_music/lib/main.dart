@@ -13,7 +13,7 @@ import 'application.dart';
 import 'utils/log_util.dart';
 
 void main() {
-  Router router = Router();
+  FluroRouter router = FluroRouter();
   Routes.configureRoutes(router);
   Application.router = router;
   Application.setupLocator();

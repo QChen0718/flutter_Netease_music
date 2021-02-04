@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:common_utils/common_utils.dart';
 import 'package:extended_image/extended_image.dart';
-import 'package:extended_text/extended_text.dart';
+// import 'package:extended_text/extended_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -195,12 +195,13 @@ class _EventPageState extends State<EventPage>
                 VEmptyView(10),
                 contentData == null
                     ? Container()
-                    : ExtendedText(
-                        contentData.msg ?? "",
-                        specialTextSpanBuilder: EventSpecialTextSpanBuilder(),
-                        style: TextStyle(
-                            fontSize: 15, color: Colors.black87, height: 1.5),
-                      ),
+                    : Container(),
+                // ExtendedText(
+                //         contentData.msg ?? "",
+                //         specialTextSpanBuilder: EventSpecialTextSpanBuilder(),
+                //         style: TextStyle(
+                //             fontSize: 15, color: Colors.black87, height: 1.5),
+                //       ),
                 picsWidget,
                 content == null
                     ? Container()
