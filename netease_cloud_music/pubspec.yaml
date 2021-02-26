@@ -41,7 +41,8 @@ dependencies:
   cached_network_image: ^2.0.0
 #  extended_text: ^0.6.6
   loading_more_list: ^1.0.4
-
+  # Bilibili开源的视频播放组件
+  fijkplayer: ^0.8.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
