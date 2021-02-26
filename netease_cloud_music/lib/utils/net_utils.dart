@@ -120,7 +120,7 @@ class NetUtils {
 
     return User.fromJson(response.data);
   }
-
+  /// 登录刷新
   static Future<Response> refreshLogin(BuildContext context) async {
     return await _get(context, '/login/refresh', isShowLoading: false)
         .catchError((e) {
@@ -333,14 +333,15 @@ class NetUtils {
 
   /// Music
   static Future<String> getMusicURL(BuildContext context, id) async {
-    var m10s = await _fm10s;
-    final _random = new Random();
-    var m10 = m10s[_random.nextInt(m10s.length)].address;
+    // var m10s = await _fm10s;
+    // final _random = new Random();
+    // var m10 = m10s[_random.nextInt(m10s.length)].address;
 
     var response =
         await _get(context, '/song/url?id=$id', isShowLoading: context != null);
-    return response.data['data'][0]["url"]
-        .replaceFirst('m10.music.126.net', m10 + '/m10.music.126.net');
+    return response.data['data'][0]['url'];
+    // return response.data['data'][0]["url"]
+    //     .replaceFirst('m10.music.126.net', m10 + '/m10.music.126.net');
   }
 
   /// 获取用户信息

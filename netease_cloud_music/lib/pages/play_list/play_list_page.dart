@@ -215,7 +215,7 @@ class _PlayListPageState extends State<PlayListPage> {
                                 playSongs(model, index);
                               },
                             );
-                          }, childCount: data.playlist.trackIds.length));
+                          }, childCount: data.playlist.tracks.length));
                     });
                   },
                 ),

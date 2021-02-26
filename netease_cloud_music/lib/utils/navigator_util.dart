@@ -85,5 +85,10 @@ class NavigatorUtil {
   static void goUserDetailPage(BuildContext context, int userId) {
     _navigateTo(context, "${Routes.userDetail}?id=$userId");
   }
-
+  
+  /// 视频详情界面
+ 
+  static void goVideoDetailPage(BuildContext context) {
+    _navigateTo(context, Routes.videoDetail);
+  }
 }

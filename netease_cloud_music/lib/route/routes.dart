@@ -15,6 +15,7 @@ class Routes {
   static String search = "/search";
   static String lookImg = "/look_img";
   static String userDetail = "/user_detail";
+  static String videoDetail = "/video_detail";
 
   static void configureRoutes(FluroRouter router) {
     router.notFoundHandler = new Handler(
@@ -33,5 +34,6 @@ class Routes {
     router.define(search, handler: searchHandler);
     router.define(lookImg, handler: lookImgHandler);
     router.define(userDetail, handler: userDetailHandler);
+    router.define(videoDetail, handler: videoDetailHandler);
   }
 }

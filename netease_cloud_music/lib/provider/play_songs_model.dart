@@ -20,7 +20,7 @@ class PlaySongsModel with ChangeNotifier{
   List<Song> _songs = [];
   int curIndex = 0;
   Duration curSongDuration;
-  AudioPlayerState _curState;
+  AudioPlayerState _curState = AudioPlayerState.PLAYING;
 
   List<Song> get allSongs => _songs;
   Song get curSong => _songs[curIndex];

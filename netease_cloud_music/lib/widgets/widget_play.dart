@@ -60,7 +60,30 @@ class PlayWidget extends StatelessWidget {
                 ),
                 HEmptyView(15),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                  //  显示歌曲列表
+                    showModalBottomSheet(
+                        context: context, 
+                        builder: (context){
+                          return Container(
+                            child: ListView.builder(
+                                itemBuilder: (context,index){
+                                  return Container(
+                                    child: Row(
+                                      children: [
+                                        new Text('测试')
+                                      ],  
+                                    ),
+                                  );
+                                }
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(8))
+                            ),
+                          );
+                        }
+                    );
+                  },
                   child: Image.asset(
                     'images/list.png',
                     width: ScreenUtil().setWidth(50),

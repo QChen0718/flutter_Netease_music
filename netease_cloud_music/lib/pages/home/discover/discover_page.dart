@@ -134,11 +134,14 @@ class _HomePrePageState extends State<DiscoverPage>
         return Container(
             height: ScreenUtil().setWidth(300),
             child: ListView.separated(
+              //item 之间的间距
               separatorBuilder: (context, index) {
-                return HEmptyView(ScreenUtil().setWidth(30));
+                return HEmptyView(ScreenUtil().setWidth(20));
               },
+              // list 水平方向前后增加15的间距
               padding:
                   EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(15)),
+              // item style
               itemBuilder: (context, index) {
                 return PlayListWidget(
                   text: data[index].name,
@@ -200,29 +203,34 @@ class _HomePrePageState extends State<DiscoverPage>
             padding:
                 EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(15)),
             itemBuilder: (context, index) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                    child: Utils.showNetImage(
-                      '${data[index].cover}?param=350&197',
+              return GestureDetector(
+                onTap: (){
+                  NavigatorUtil.goVideoDetailPage(context);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      child: Utils.showNetImage(
+                        '${data[index].cover}?param=350&197',
+                      ),
                     ),
-                  ),
-                  VEmptyView(5),
-                  Text(
-                    data[index].name,
-                    style: commonTextStyle,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  VEmptyView(2),
-                  Text(
-                    data[index].artistName,
-                    style: smallGrayTextStyle,
-                  ),
-                ],
+                    VEmptyView(5),
+                    Text(
+                      data[index].name,
+                      style: commonTextStyle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    VEmptyView(2),
+                    Text(
+                      data[index].artistName,
+                      style: smallGrayTextStyle,
+                    ),
+                  ],
+                ),
               );
             },
             shrinkWrap: true,
@@ -232,6 +240,15 @@ class _HomePrePageState extends State<DiscoverPage>
         });
   }
 
+  @override
+  void initState(){
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(Duration.zero,(){
+      NetUtils.getDailySongsData(context);
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     super.build(context);
