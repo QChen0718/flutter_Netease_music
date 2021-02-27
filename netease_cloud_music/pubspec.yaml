@@ -43,6 +43,8 @@ dependencies:
   loading_more_list: ^1.0.4
   # Bilibili开源的视频播放组件
   fijkplayer: ^0.8.3
+  # 基础的点击
+  tapped: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

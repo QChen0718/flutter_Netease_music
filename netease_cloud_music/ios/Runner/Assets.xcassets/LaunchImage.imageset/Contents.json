@@ -1,70 +1,67 @@
 {
   "images" : [
     {
-      "extent" : "full-screen",
       "idiom" : "iphone",
-      "subtype" : "2688h",
-      "filename" : "splash@3x.png",
-      "minimum-system-version" : "12.0",
-      "orientation" : "portrait",
-      "scale" : "3x"
+      "scale" : "1x"
     },
     {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "1792h",
-      "filename" : "splash_xr.png",
-      "minimum-system-version" : "12.0",
-      "orientation" : "portrait",
-      "scale" : "2x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "2436h",
-      "filename" : "splash.png",
-      "minimum-system-version" : "11.0",
-      "orientation" : "portrait",
-      "scale" : "3x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "736h",
-      "filename" : "splash1.png",
-      "minimum-system-version" : "8.0",
-      "orientation" : "portrait",
-      "scale" : "3x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "667h",
-      "filename" : "splash-3.png",
-      "minimum-system-version" : "8.0",
-      "orientation" : "portrait",
-      "scale" : "2x"
-    },
-    {
-      "orientation" : "portrait",
-      "idiom" : "iphone",
       "filename" : "splash_640_960.png",
-      "extent" : "full-screen",
-      "minimum-system-version" : "7.0",
+      "idiom" : "iphone",
       "scale" : "2x"
     },
     {
-      "extent" : "full-screen",
       "idiom" : "iphone",
-      "subtype" : "retina4",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "1x",
+      "subtype" : "retina4"
+    },
+    {
       "filename" : "splash_640_1136.png",
-      "minimum-system-version" : "7.0",
-      "orientation" : "portrait",
-      "scale" : "2x"
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "subtype" : "retina4"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "subtype" : "retina4"
+    },
+    {
+      "filename" : "splash1.png",
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "subtype" : "736h"
+    },
+    {
+      "filename" : "splash-3.png",
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "subtype" : "667h"
+    },
+    {
+      "filename" : "splash.png",
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "subtype" : "2436h"
+    },
+    {
+      "filename" : "splash@3x.png",
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "subtype" : "2688h"
+    },
+    {
+      "filename" : "splash_xr.png",
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "subtype" : "1792h"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }
