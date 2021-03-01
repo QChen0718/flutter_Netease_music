@@ -1,6 +1,8 @@
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:netease_cloud_music/model/mv.dart';
+
 import 'package:netease_cloud_music/model/video.dart';
 import 'package:netease_cloud_music/pages/video_detail/VideoPlayer.dart';
 import 'package:netease_cloud_music/utils/net_utils.dart';
@@ -9,8 +11,8 @@ import 'package:netease_cloud_music/widgets/widget_video_content_view.dart';
 
 class VideoDetail extends StatefulWidget{
   final String mvid;
-
-  const VideoDetail({Key key, this.mvid}) : super(key: key);
+  final List<String> videoList;
+  const VideoDetail({Key key, this.mvid,this.videoList}) : super(key: key);
   @override
   _VideoDetailState createState() => _VideoDetailState();
 }
@@ -48,16 +50,39 @@ class _VideoDetailState extends State<VideoDetail> with WidgetsBindingObserver{
   @override
   void initState() {
     // TODO: implement initState
-    videoDataList = UserVideo.fetchVideo();
+    // videoDataList = UserVideo.fetchVideo();
     WidgetsBinding.instance.addObserver(this);
 
+    _pageController.addListener(() {
+      var index = _pageController.page;
+      if(index%1==0){
+        int target = index ~/ 1;
+        NetUtils.getMvData(context,mvid: widget.videoList[target]).then((response){
+          setState(() {
+            videoDataList.add(UserVideo(url:response.data.brs.s720,image: '',desc: response.data.desc));
+            _videoListController.init(_pageController, videoDataList);
+            // 默认播放
+            _videoListController.currentPlayer.start();
+          });
+        });
+      }
+    });
     Future.delayed(Duration.zero,(){
+      // 加载当前视图
       NetUtils.getMvData(context,mvid: widget.mvid).then((response){
         setState(() {
-          videoDataList.insert(0, UserVideo(url:response.data.brs.s720,image: '',desc: response.data.desc));
+          videoDataList.add(UserVideo(url:response.data.brs.s720,image: '',desc: response.data.desc));
           _videoListController.init(_pageController, videoDataList);
           // 默认播放
           _videoListController.currentPlayer.start();
+        });
+      });
+
+      // 缓存下一视图
+      NetUtils.getMvData(context,mvid: widget.mvid).then((response){
+        setState(() {
+          videoDataList.add(UserVideo(url:response.data.brs.s720,image: '',desc: response.data.desc));
+          _videoListController.addVideoInfo(videoDataList);
         });
       });
     });
@@ -79,7 +104,7 @@ class _VideoDetailState extends State<VideoDetail> with WidgetsBindingObserver{
           pageSnapping: true, //设置滑动时显示一页
           scrollDirection: Axis.vertical, //设置滑动方向
           itemCount: _videoListController.videoCount,
-          itemBuilder: (context,index){
+          itemBuilder: (context,index) {
             var data = videoDataList[index];
             bool isF = favoriteMap[index] ?? false;
             var player = _videoListController.playerOfIndex(index);

@@ -205,7 +205,11 @@ class _HomePrePageState extends State<DiscoverPage>
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: (){
-                  NavigatorUtil.goVideoDetailPage(context,data[index].id.toString());
+                  List<String> ids = [];
+                  snapshot.data.forEach((element) {
+                    ids.add(element.id.toString());
+                  });
+                  NavigatorUtil.goVideoDetailPage(context,data[index].id.toString(),ids);
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

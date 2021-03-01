@@ -4,6 +4,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:netease_cloud_music/model/comment_head.dart';
+import 'package:netease_cloud_music/model/mv.dart';
 import 'package:netease_cloud_music/model/recommend.dart';
 import 'package:netease_cloud_music/pages/look_img_page.dart';
 import 'package:netease_cloud_music/route/routes.dart';
@@ -88,7 +89,7 @@ class NavigatorUtil {
   
   /// 视频详情界面
  
-  static void goVideoDetailPage(BuildContext context, String mvid) {
-    _navigateTo(context, "${Routes.videoDetail}?mvid=$mvid");
+  static void goVideoDetailPage(BuildContext context, String mvid, List<String> videoList) {
+    _navigateTo(context, "${Routes.videoDetail}?mvid=$mvid&videoList=$videoList");
   }
 }

@@ -1,6 +1,7 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:netease_cloud_music/model/comment_head.dart';
+import 'package:netease_cloud_music/model/mv.dart';
 import 'package:netease_cloud_music/model/recommend.dart';
 import 'package:netease_cloud_music/pages/comment/comment_page.dart';
 import 'package:netease_cloud_music/pages/daily_songs/daily_songs_page.dart';
@@ -94,6 +95,8 @@ var userDetailHandler = new Handler(
 var videoDetailHandler = new Handler(
   handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
     var mvid = params['mvid'].first;
-    return VideoDetail(mvid: mvid,);
+    String result = params['videoList'].first;
+    var videoList = result.split(',');
+    return VideoDetail(mvid: mvid,videoList: videoList,);
   }
 );
