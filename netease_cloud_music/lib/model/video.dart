@@ -3,8 +3,9 @@ import 'dart:io';
 Socket socket;
 const mockImage =
     'http://baishan.oversketch.com/2019/11/05/1f676c8e4036fa5080892c5294c8e90b.PNG';
-const mockVideo =
-    'http://baishan.oversketch.com/2019/11/05/d07f2f1440e51b9680f4bcfe63b0ab67.MP4';
+// const mockVideo =
+//     'http://baishan.oversketch.com/2019/11/05/d07f2f1440e51b9680f4bcfe63b0ab67.MP4';
+const mockVideo = "http://vodkgeyttp8.vod.126.net/cloudmusic/a3db/core/8855/0fcb6e92f37fdda1e5961f6f3f96861b.mp4?wsSecret=920c753f0da971b6151b215fb9b9e123&wsTime=1614581011";
 const mV2 =
     'http://baishan.oversketch.com/2020/05/14/32f5e6da40947c9880598b4d8b3671f4.MP4';
 const mV3 =

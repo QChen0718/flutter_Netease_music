@@ -20,6 +20,7 @@ import 'package:netease_cloud_music/model/song_detail.dart';
 import 'package:netease_cloud_music/model/top_list.dart';
 import 'package:netease_cloud_music/model/user.dart';
 import 'package:netease_cloud_music/model/user_detail.dart';
+import 'package:netease_cloud_music/model/video_detail.dart';
 import 'package:netease_cloud_music/route/navigate_service.dart';
 import 'package:netease_cloud_music/route/routes.dart';
 import 'package:netease_cloud_music/utils/utils.dart';
@@ -164,6 +165,14 @@ class NetUtils {
     return MVData.fromJson(response.data);
   }
 
+  /// 获取MV数据
+  static Future<VideoDetailModel> getMvData(
+      BuildContext context, {
+      String mvid
+  }) async{
+    var response = await _get(context, '/mv/detail?mvid=$mvid');
+    return VideoDetailModel.fromJson(response.data);
+  }
   /// 每日推荐歌曲
   static Future<DailySongsData> getDailySongsData(BuildContext context) async {
     var response = await _get(
@@ -353,6 +362,10 @@ class NetUtils {
         params: params, isShowLoading: false);
     return UserDetailData.fromJson(response.data);
   }
-
+  /// 获取全部视频列表
+  static Future<Response> getAllVideoList() async{
+    var response = await _get(null, '/mv/all');
+    return response;
+  }
 }
 

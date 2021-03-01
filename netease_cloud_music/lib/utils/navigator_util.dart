@@ -88,7 +88,7 @@ class NavigatorUtil {
   
   /// 视频详情界面
  
-  static void goVideoDetailPage(BuildContext context) {
-    _navigateTo(context, Routes.videoDetail);
+  static void goVideoDetailPage(BuildContext context, String mvid) {
+    _navigateTo(context, "${Routes.videoDetail}?mvid=$mvid");
   }
 }

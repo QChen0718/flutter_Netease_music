@@ -205,7 +205,7 @@ class _HomePrePageState extends State<DiscoverPage>
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: (){
-                  NavigatorUtil.goVideoDetailPage(context);
+                  NavigatorUtil.goVideoDetailPage(context,data[index].id.toString());
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -245,7 +245,8 @@ class _HomePrePageState extends State<DiscoverPage>
     // TODO: implement initState
     super.initState();
     Future.delayed(Duration.zero,(){
-      NetUtils.getDailySongsData(context);
+      // NetUtils.getDailySongsData(context);
+      NetUtils.getAllVideoList();
     });
 
   }

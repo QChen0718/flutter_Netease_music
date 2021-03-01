@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netease_cloud_music/model/video.dart';
 import 'package:netease_cloud_music/pages/video_detail/VideoPlayer.dart';
+import 'package:netease_cloud_music/utils/net_utils.dart';
 import 'package:netease_cloud_music/widgets/widget_video_button.dart';
 import 'package:netease_cloud_music/widgets/widget_video_content_view.dart';
 
 class VideoDetail extends StatefulWidget{
+  final String mvid;
+
+  const VideoDetail({Key key, this.mvid}) : super(key: key);
   @override
   _VideoDetailState createState() => _VideoDetailState();
 }
@@ -46,9 +50,17 @@ class _VideoDetailState extends State<VideoDetail> with WidgetsBindingObserver{
     // TODO: implement initState
     videoDataList = UserVideo.fetchVideo();
     WidgetsBinding.instance.addObserver(this);
-    _videoListController.init(_pageController, videoDataList);
-    // 默认播放
-    _videoListController.currentPlayer.start();
+
+    Future.delayed(Duration.zero,(){
+      NetUtils.getMvData(context,mvid: widget.mvid).then((response){
+        setState(() {
+          videoDataList.insert(0, UserVideo(url:response.data.brs.s720,image: '',desc: response.data.desc));
+          _videoListController.init(_pageController, videoDataList);
+          // 默认播放
+          _videoListController.currentPlayer.start();
+        });
+      });
+    });
     super.initState();
   }
   @override
@@ -61,7 +73,8 @@ class _VideoDetailState extends State<VideoDetail> with WidgetsBindingObserver{
           '视频详情'
         ),
       ),
-      body: PageView.builder(
+      body: _videoListController.videoCount > 0 ?
+      PageView.builder(
           controller: _pageController,
           pageSnapping: true, //设置滑动时显示一页
           scrollDirection: Axis.vertical, //设置滑动方向
@@ -127,7 +140,7 @@ class _VideoDetailState extends State<VideoDetail> with WidgetsBindingObserver{
             );
             return contentWidget;
           }
-      )
+      ):Container()
     );
   }
 }

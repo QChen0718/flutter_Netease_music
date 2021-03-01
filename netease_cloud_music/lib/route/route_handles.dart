@@ -93,6 +93,7 @@ var userDetailHandler = new Handler(
 // 跳转到视频详情页面
 var videoDetailHandler = new Handler(
   handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
-    return VideoDetail();
+    var mvid = params['mvid'].first;
+    return VideoDetail(mvid: mvid,);
   }
 );
