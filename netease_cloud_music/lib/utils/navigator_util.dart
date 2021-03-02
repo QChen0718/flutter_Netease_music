@@ -92,4 +92,9 @@ class NavigatorUtil {
   static void goVideoDetailPage(BuildContext context, String mvid, List<String> videoList) {
     _navigateTo(context, "${Routes.videoDetail}?mvid=$mvid&videoList=$videoList");
   }
+
+//  歌单广场
+  static void goMusicListPage(BuildContext context){
+    _navigateTo(context, '${Routes.musicList}');
+  }
 }

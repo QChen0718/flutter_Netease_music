@@ -8,6 +8,7 @@ import 'package:netease_cloud_music/pages/daily_songs/daily_songs_page.dart';
 import 'package:netease_cloud_music/pages/home/home_page.dart';
 import 'package:netease_cloud_music/pages/login_page.dart';
 import 'package:netease_cloud_music/pages/look_img_page.dart';
+import 'package:netease_cloud_music/pages/music_list/music_list.dart';
 import 'package:netease_cloud_music/pages/play_list/play_list_page.dart';
 import 'package:netease_cloud_music/pages/play_songs/play_songs_page.dart';
 import 'package:netease_cloud_music/pages/search/search_page.dart';
@@ -98,5 +99,12 @@ var videoDetailHandler = new Handler(
     String result = params['videoList'].first;
     var videoList = result.split(',');
     return VideoDetail(mvid: mvid,videoList: videoList,);
+  }
+);
+
+// 跳转到歌单广场页面
+var musicListHandler = new Handler(
+  handlerFunc: (BuildContext context,Map<String,List<Object>> params){
+    return MusicListPage();
   }
 );

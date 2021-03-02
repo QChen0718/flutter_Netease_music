@@ -3,6 +3,7 @@ import 'package:netease_cloud_music/provider/user_model.dart';
 import 'package:netease_cloud_music/utils/navigator_util.dart';
 import 'package:netease_cloud_music/widgets/v_empty_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:netease_cloud_music/widgets/widget_drawer_view.dart';
 import 'package:netease_cloud_music/widgets/widget_play.dart';
 import 'package:netease_cloud_music/widgets/widget_round_img.dart';
 import 'package:provider/provider.dart';
@@ -116,6 +117,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ],
         ),
       ),
+      drawer: Drawer(
+        child: DrawerView(),
+      ),
+      drawerEdgeDragWidth: 60.0,
     );
   }
 }

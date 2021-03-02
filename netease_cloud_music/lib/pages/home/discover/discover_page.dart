@@ -66,9 +66,17 @@ class _HomePrePageState extends State<DiscoverPage>
                   NavigatorUtil.goDailySongsPage(context);
                   break;
                 case 1:
+                  //歌单
+                  NavigatorUtil.goMusicListPage(context);
                   break;
                 case 2:
                   NavigatorUtil.goTopListPage(context);
+                  break;
+                case 3:
+                  // 电台
+                  break;
+                case 4:
+                  // 直播
                   break;
               }
             },
