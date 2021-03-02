@@ -1,6 +1,13 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:netease_cloud_music/model/user.dart';
+import 'package:netease_cloud_music/utils/navigator_util.dart';
 
 class DrawerView extends StatefulWidget{
+  final Account user;
+  final Profile profile;
+  const DrawerView({Key key, this.user,this.profile}) : super(key: key);
   @override
   _DrawerViewState createState() => _DrawerViewState();
 }
@@ -35,57 +42,70 @@ class _DrawerViewState extends State<DrawerView> {
       {"icon":'','title':'分享网易云音乐','isShowRightView':true},
       {"icon":'','title':'关于','isShowRightView':true},
     ]
-  }
+  };
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
+      width: 320,
+      color: Color(0xffF3F3F3),
       child: ListView(
         children: [
-          Container(
-            child: Row(
-              children: [
-                Container(
-                  child: Image.network(
-                    '',
-                    width: 30,
-                    height: 30,
-                  ),
-                ),
-                Container(
-                  child: new Text(
-                    '张三2021',
-                    style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 16
+          InkWell(
+            onTap: () => NavigatorUtil.goUserDetailPage(context, widget.user.id),
+            child: Container(
+              margin: EdgeInsets.only(left: 15,right: 15,top: 20),
+              child: Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 15),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network(
+                        widget.profile.avatarUrl,
+                        width: 40,
+                        height: 40,
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                    child: Image.asset(
-                      '',
-                      width: 10,
-                      height: 18,
-                    )
-                ),
-                Expanded(
-                    child: Image.asset(
-                      '',
-                      width: 25,
-                      height: 25,
-                    )
-                )
-              ],
+                  Container(
+                    child: new Text(
+                      widget.profile.nickname,
+                      style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 16
+                      ),
+                    ),
+                  ),
+                  Container(
+                      child: Image.asset(
+                        '',
+                        width: 10,
+                        height: 18,
+                      )
+                  ),
+                  Expanded(
+                      child: Image.asset(
+                        '',
+                        width: 25,
+                        height: 25,
+                      )
+                  )
+                ],
+              ),
             ),
           ),
           Container(
             height: 150,
             padding: EdgeInsets.all(20),
+            margin: EdgeInsets.only(left: 15,right: 15,top: 20,bottom: 15),
             child: Stack(
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           child: Text(
@@ -131,12 +151,14 @@ class _DrawerViewState extends State<DrawerView> {
                                 color: Colors.white,
                                 fontSize: 12
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           decoration: BoxDecoration(
                               border: Border.all(
                                   color: Colors.white,
                                   width: 1
-                              )
+                              ),
+                            borderRadius: BorderRadius.circular(15)
                           ),
                         ),
                       ),
@@ -145,6 +167,8 @@ class _DrawerViewState extends State<DrawerView> {
                 ),
                 Positioned(
                     bottom: 0,
+                    height: 30,
+                    width: 228,
                     child: Row(
                       children: [
                         Container(
@@ -173,6 +197,118 @@ class _DrawerViewState extends State<DrawerView> {
             decoration: BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.circular(10)
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 15,right: 15,bottom: 15),
+            padding: EdgeInsets.only(left: 15,right: 15),
+            child: Column(
+              children: List.generate(userDataDict['section1'].length, (index) {
+                return cellItem(userDataDict['section1'][index]);
+              })
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10)
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 15,right: 15,bottom: 15),
+            padding: EdgeInsets.only(left: 15,right: 15),
+            child: Column(
+                children: List.generate(userDataDict['section2'].length, (index) {
+                  return cellItem(userDataDict['section2'][index]);
+                })
+            ),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10)
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 15,right: 15,bottom: 15),
+            padding: EdgeInsets.only(left: 15,right: 15),
+            child: Column(
+                children: List.generate(userDataDict['section3'].length, (index) {
+                  return cellItem(userDataDict['section3'][index]);
+                })
+            ),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10)
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 15,right: 15,bottom: 15),
+            padding: EdgeInsets.only(left: 15,right: 15),
+            child: Column(
+                children: List.generate(userDataDict['section4'].length, (index) {
+                  return cellItem(userDataDict['section4'][index]);
+                })
+            ),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10)
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 15,right: 15,bottom: 30),
+            padding: EdgeInsets.only(top: 10,bottom: 10),
+            child: Text(
+              '退出登录/关闭',
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 16
+              ),
+              textAlign: TextAlign.center,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+                borderRadius: BorderRadius.circular(10)
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget cellItem(Map<String,dynamic> cellDict){
+    return Container(
+      padding: EdgeInsets.only(top: 10,bottom: 10),
+      child: Row(
+        children: [
+          Container(
+            child: Image.asset(
+              cellDict['icon'],
+              width: 25,
+              height: 25,
+            ),
+          ),
+          Expanded(
+              child: Container(
+                child: Text(
+                  cellDict['title'],
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87
+                  ),
+                ),
+              ),
+          ),
+          Container(
+            child: Center(
+              child: Text(
+                '7',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12
+                ),
+              ),
+            ),
+          ),
+          Container(
+            child: Icon(
+              Icons.arrow_forward_ios
             ),
           )
         ],

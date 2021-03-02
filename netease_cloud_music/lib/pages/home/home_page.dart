@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   TabController _tabController;
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       // 设置没有高度的 appbar，目的是为了设置状态栏的颜色
+      key: _scaffoldKey,
       appBar: PreferredSize(
         child: AppBar(
           elevation: 0,
@@ -52,7 +53,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           builder: (_, model, __) {
                             var user = model.user;
                             return GestureDetector(
-                              onTap: () => NavigatorUtil.goUserDetailPage(context, user.account.id),
+                              onTap:(){
+                                _scaffoldKey.currentState.openDrawer();
+                              },
+                                  // () => NavigatorUtil.goUserDetailPage(context, user.account.id),
                               child:
                                   RoundImgWidget(user.profile.avatarUrl, 140.w),
                             );
@@ -117,8 +121,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: DrawerView(),
+      drawer: Consumer<UserModel>(
+        builder: (_, model, __) {
+          var user = model.user;
+          return DrawerView(user: user.account,profile: user.profile,);
+        },
       ),
       drawerEdgeDragWidth: 60.0,
     );
